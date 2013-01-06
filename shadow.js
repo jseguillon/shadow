@@ -62,9 +62,9 @@ $.getScript("https://raw.github.com/bramstein/jsizes/master/lib/jquery.sizes.js"
     $.getScript("https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael-min.js").done(function(script, textStatus)  {
         paper = new Raphael(document.getElementById('c'), $(document).width(), $(document).height());  
         //$('div, span, a, p, h1, h2, ol, ul, li, img')
-            $('body').children().each(function() {
-            outline($(this), $(document).width(), $(document).height())
-            }); //FIXME : manque une conf pour pouvoir fitrer les éléments a display
+        //    $('body').children().each(function() {
+        //    outline($(this), $(document).width(), $(document).height())
+        //    }); //FIXME : manque une conf pour pouvoir fitrer les éléments a display
 
         //FIXME : nécessiterait plutôt un bouton pour lancer ou pas cette action 
         /*$('*').css({

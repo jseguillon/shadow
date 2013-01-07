@@ -41,7 +41,7 @@ function outline(elem, maxr, maxb, onlyreturn) {
     
   var rectangle = paper.rect(rl, rt, 
                              (rl+w>maxr)?(maxr-rl):w, 
-                             (rt+h>maxb)?(maxb-h):h
+                             (rt+h>maxb)?(maxb-rt):h
                             ).attr({stroke: "yellow"}); //FIXME : du coup c ici que serait mieux le test sur valeur overflow  
 
     //draw content

@@ -5,11 +5,8 @@ $('<div id="c"></div>').appendTo('body');
 
 
 //outline or simply returns 
-
-
 function outline(elem, maxr, maxb, onlyreturn) {
     //Do not handle non-visible elements
-    //FIXME : lancer tt de meme le traitement sur les fils
     if (!elem.is(":visible")) return false;
 
     l = elem.offset().left;
@@ -36,23 +33,18 @@ function outline(elem, maxr, maxb, onlyreturn) {
     rt = t + pdt;
 
     //if overflow
-    //w=;
-    //h=(h>maxb)?(maxb-h):h;
     
   var rectangle = paper.rect(rl, rt, 
-                             (rl+w>maxr)?(maxr-rl):w, 
-                             (rt+h>maxb)?(maxb-rt):h
+                             Math.min(l+w,maxr), 
+                             Math.min(t+h,maxb) 
                             ).attr({stroke: "yellow"}); //FIXME : du coup c ici que serait mieux le test sur valeur overflow  
 
-    //draw content
-    //ctx.strokeStyle = "#000000";
-    //draw padding
     //var rectangle = paper.rect(l, t, ow, oh).attr({stroke: "red"});
 
     //FIXME : should calculate border
     //FIXME : should calculate margin
     elem.children().each(function() {
-      outline($(this), (rl+w<maxr)?rl+w:maxr, (rt+h<maxb)?rt+h:maxb) //FIXME : presque mais c du position et pas du size qu'il faut passer, sinon le width ne veut rien dire (pas le même right)
+      outline($(this), Math.min(rl+w,maxr), Math.min(t+h, maxb))
         });
 }
 

@@ -33,19 +33,25 @@ function outline(elem, maxr, maxb, onlyreturn) {
     rt = t + pdt;
 
     //if overflow
-    
+    drawWidth = Math.min(w,maxr-rl);
+    drawHeight= Math.min(h,maxb-rt);
+    drawWidth = drawWidth<0?0:drawWidth;
+    drawHeight = drawHeight<0?0:drawHeight; 
+
   var rectangle = paper.rect(rl, rt, 
-                             Math.min(l+w,maxr), 
-                             Math.min(t+h,maxb) 
+                             drawWidth, 
+                             drawHeight 
                             ).attr({stroke: "yellow"}); //FIXME : du coup c ici que serait mieux le test sur valeur overflow  
 
     //var rectangle = paper.rect(l, t, ow, oh).attr({stroke: "red"});
 
     //FIXME : should calculate border
     //FIXME : should calculate margin
+    function doChild (child, maxr, maxb) { outline(child,maxr, maxb)};
+    //process = doChild($(this), Math.min(rl+w,maxr), Math.min(t+h, maxb));
     elem.children().each(function() {
-      outline($(this), Math.min(rl+w,maxr), Math.min(t+h, maxb))
-        });
+        doChild($(this), Math.min(rl+w,maxr), Math.min(t+h, maxb));
+    });
 }
 
 var paper;

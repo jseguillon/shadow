@@ -3,6 +3,7 @@
 //Create canvas using document sizes
 $('<div id="c"></div>').appendTo('body');
 
+jQuery.ajaxSetup({ cache: true });
 
 //outline or simply returns 
 function outline(elem, maxr, maxb, onlyreturn) {
